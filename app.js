@@ -1,4 +1,4 @@
-//empty array with users//
+//empty array with users
 var Chat = (function () {
       // Users
       let users = []
@@ -61,6 +61,32 @@ module.sendChat = function (message) {
   message.push(message)
 }
 
+
+//searching messages
+<script>
+let messages = []
+function ChatMessage(message,date,user){
+  this.message = message
+  this.user = users
+  this.createdAt = new Date()
+}
+
+let newMessage1 = new ChatMessage('Hello World!', 'katarina')
+message.push(newMessage1)
+console.log('All messages', messages)
+
+let keyword = "hello" //it is case sensitive
+
+let results = messages.filter(m => {
+    //does this current message match what I'm looking for
+    return m.message.indexOf(keyword) !== -1
+})
+
+
+console.log('Message results', results)
+
+</script>
+
 /*
 drone.on('open', error => {
   if (error) {
@@ -91,13 +117,3 @@ room.on('member_leave', ({id}) => {
   const index = users.findIndex (user => user.id === id);
   users.splice(index,1);
 });
-
-
-
-//keep a record of all the messages
-
-//let users send a message to the Chat
-
-//search within messages
-
-//censor messages containing certain words should be censored, and saved
