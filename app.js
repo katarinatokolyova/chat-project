@@ -3,10 +3,18 @@ var Chat = (function () {
       // Users
       let users = []
       let module = {}
+
       module.joinChat = function (user) {
-          users.push(user)
-}
+        users.push(user)
+      }
+
+      for (let i = 0, i< users.length; i++) {
+        if (users[i] == user) {
+          userAlreadyConnected = true
+        }
+
       return module
+      }
 })()
 
 
@@ -81,6 +89,7 @@ let results = messages.filter(m => {
     //does this current message match what I'm looking for
     return m.message.indexOf(keyword) !== -1
 })
+
 
 
 console.log('Message results', results)
