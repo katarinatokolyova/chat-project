@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+var Chat = (function () {
+ // Users
+ let users = []
+
+ let module = {}
+
+ module.joinChat = function (user) {
+ users.push(user)
+ }
+
+ return module
+
+})()
+=======
 //empty array with users
 var Chat = (function () {
       // Users
@@ -126,3 +141,4 @@ room.on('member_leave', ({id}) => {
   const index = users.findIndex (user => user.id === id);
   users.splice(index,1);
 });
+>>>>>>> e0fa7bccea722ec983b983fb684841e2ba1d02d5
