@@ -62,6 +62,17 @@ var Chat = (function () {
     }
   }
 
+  module.searchMessage = function (keyword) {
+    //search for words in messages
+
+    let results = messages.filter(m => {
+      //does this current message match what I'm looking for
+      return m.message.indexOf(keyword) != -1
+    })
+
+    return results
+  }
+
   module.leaveChat = function (user) {
     alert('User is trying to leave', user)
   }
@@ -70,22 +81,16 @@ var Chat = (function () {
 })() //End of module
 
 
-
 //messages
-function ChatMessage(message, date, user){
+function ChatMessage(message, user){
   this.message = message
   this.user = user
   this.createdAt = new Date()
 }
 
 //display messages
-let message = new ChatMessage(userInput, user, createdAt)
-message.push(message)
+let message = new ChatMessage("besked", "bruger")
+//messages.push(message)
+Chat.sendMessage(message)
 
-//search for words in messages
-let keyword = "hello" //it is case sensitive
-
-let results = messages.filter(m => {
-  //does this current message match what I'm looking for
-  return m.message.indexOf(keyword) != -1
-})
+console.log("Search results:", Chat.searchMessage("ord"));
