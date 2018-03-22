@@ -10,28 +10,33 @@
   <script type="text/javascript" src="app.js" charset="utf-8"></script>
 
   <h1>Chat</h1>
-
-  <form id="myForm" action="index.html" method="post">
-    <input id="inputFieldUser" type="text" value="Write your message here">
-    </br>
-    <input id="submitButton" type="submit" value="Submit">
-  </form>
-
+  <div class="container">
+    <!-- Chat Window -->
     <ul id = "chatWindow">
-      <li id="postMessage">Hello worldizzle</li>
+      <li>test message</li>
     </ul>
 
+    <!-- Message Form -->
+    <form id="myForm" action="index.html" method="post">
+      <input id="inputField" type="text" value="Write your message here">
+      </br>
+      <input id="submitButton" type="submit" value="Submit">
+    </form>
+  </div>
 
   <script type="text/javascript">
-    let form = document.querySelector("#myForm")
+    let form = document.getElementById('myForm');
+    let submit = document.getElementById('submitButton');
+    let chat = document.getElementById('chatWindow');
 
-    form.addEventListener('submit', function (event){
-      let newItem = document.createItem("li");
-      newItem.innerHTML = document.querySelector("#postMessage").value;
+    form.addEventListener('submit', function (event) {
+      let newElement = document.createElement('li');
+      newElement.innerHTML = document.getElementById('inputField').value;
 
-      document.querySelector("#chatWindow").appendChild(newItem)
+      chat.appendChild(newElement);
+      document.getElementById('inputFieldUser').value = "";
 
-      event.preventDefault()
+      event.preventDefault();
     })
 
   </script>

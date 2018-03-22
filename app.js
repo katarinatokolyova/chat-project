@@ -1,38 +1,43 @@
+/*
+An overall module for a chat application
+• Keep track of connected users in the chat
+  - A user should have a unique identifier, otherwise they should not be allowed to join
+  - A user also needs to be able to leave
+• Keep a record of all the messages
+• Let users send a message to the chat
+  - A message need to contain: A message, a send date and an author
+• Search within messages
+  - By content and by author
+• Censor messages containing certain words
+  - Censored messages should still be saved
+• A window/box to display chat messages in
+• A list to display connected users on
+• A field to input chat messages in
+• A field to search for messages in
+  - A place to display the search results (you could reuse you main view for regular messages)
+  */
 
 
+// Module
 var Chat = (function () {
   // defining array of users
   let users = []
+  let messages = []
+  let badMessages = []
   let module = {}
 
+  //User joining the chat//
   module.joinChat = function (user) {
-    users.push(user)
-  }
+    alert('User is trying to join', user)
 
-  //check if user is connected
-  for (let i = 0, i< users.length; i++) {
-    if (users[i] == user) {
-      userAlreadyConnected = true
-    }
-  return module
-  }
-})()
+    let userAlreadyConnected = false
 
-//User joining the chat//
-module.joinChat = function (user) {
-  alert('User is trying to join', user)
-
-  let userAlreadyConnected = false
-
-  for (let i = 0, i< users.length; i++) {
-    //evaluating if user is in users-array
-    if (users[i] == user) {
-      userAlreadyConnected = true
-
-      alert('User is joining', user)
-
-      //add the user connection
-      users.push(user)
+    for (let i = 0; i< users.length; i++) {
+      //evaluating if user is in users-array
+      if (users[i] == user) {
+        userAlreadyConnected = true
+        alert('User is joining', user)
+      }
     }
 
     //if user is already connected
@@ -42,15 +47,32 @@ module.joinChat = function (user) {
       //add the user to connected users
       users.push(user)
     }
+
+  //censoring messages before sending
+  module.sendMessage = function (message) {
+    //check if bad words are in the messages
+    let badWord = "poop" //it is case sensitive
+
+    if (message.message.indexOf(badWord) != -1) {
+      // There is a bad word
+      alert('Message got censored', message)
+      badMessages.push(message)
+    } else {
+      messages.push(message)
+    }
+  }
+
+  module.leaveChat = function (user) {
+    alert('User is trying to leave', user)
   }
 
   return module
-})))
+})() //End of module
+
+
 
 //messages
-let messages = []
-
-function ChatMessage(message,date,user){
+function ChatMessage(message, date, user){
   this.message = message
   this.user = user
   this.createdAt = new Date()
@@ -65,27 +87,5 @@ let keyword = "hello" //it is case sensitive
 
 let results = messages.filter(m => {
   //does this current message match what I'm looking for
-  return m.message.indexOf(keyword) !== -1
+  return m.message.indexOf(keyword) != -1
 })
-
-//censoring messages
-module.sendChat = function (message) {
-  //check if bad words are in the messages
-  let badWord = "poop" //it is case sensitive
-
-  let results = messages.filter(m => {
-
-  //does this current message match what I'm looking for?
-  return m.message.indexOf(badWord) == -1
-
-  //if word not present push the message
-  message.push(message)
-}
-
-//Censoring filter
-var Filter = require('bad-words'),
-filter = new Filter();
-
-//bad words what should be filtered out
-filter.addWords(['poop', 'fart', 'boobs']);
-filter.clean(message)
