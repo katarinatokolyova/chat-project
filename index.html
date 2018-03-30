@@ -7,10 +7,11 @@
   <title>Document</title>
 </head>
 <body>
+  <script type="text/javascript" src="app.js" charset="utf-8"></script>
+
   <h1>Chat</h1>
 
   <p>This is a chat</p>
-
   <!-- Message Form -->
   <form id="chatForm">
     <input id="newMessage" type="text" placeholder="Write your message here">
@@ -19,9 +20,9 @@
 
   <!-- Chat Window -->
   <ul id= "chatWindow">
-    <li>test message</li>
-    <li>test message</li>
-    <li>test message</li>
+    <li>test message 1</li>
+    <li>test message 2</li>
+    <li>test message 3</li>
   </ul>
 
   <script>
@@ -30,8 +31,8 @@
     console.log('h1 element', pageHeader)
 
     //Select all chat messages
-    let messages = document.querySelectorAll('#chatWindow li')
-    console.log('All chat messages', messages);
+    let messageList = document.querySelectorAll('#chatWindow li')
+    console.log('All chat messages', messageList);
 
     //Add event to Form
     //Select form

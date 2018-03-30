@@ -26,60 +26,59 @@ var Chat = (function () {
   let badMessages = []
   let module = {}
 
-  //User joining the chat//
-  module.joinChat = function (user) {
-    alert('User is trying to join', user)
+    //User joining the chat//
+    module.joinChat = function (user) {
+      alert('User is trying to join', user)
 
-    let userAlreadyConnected = false
+      let userAlreadyConnected = false
 
-    for (let i = 0; i< users.length; i++) {
-      //evaluating if user is in users-array
-      if (users[i] == user) {
-        userAlreadyConnected = true
-        alert('User is joining', user)
+      for (let i = 0; i< users.length; i++) {
+        //evaluating if user is in users-array
+        if (users[i] == user) {
+          userAlreadyConnected = true
+          alert('User is joining', user)
+        }
+      }
+      //if user is already connected
+      if (userAlreadyConnected){
+        alert('User already connected', user)
+      }  else {
+        //add the user to connected users
+        users.push(user)
       }
     }
 
-    //if user is already connected
-    if (userAlreadyConnected){
-      alert('User already connected', user)
-    }  else {
-      //add the user to connected users
-      users.push(user)
+    //censoring messages before sending
+    module.sendMessage = function (message) {
+      //check if bad words are in the messages
+      let badWord = "poop" //it is case sensitive
+
+      if (message.message.indexOf(badWord) != -1) {
+        // There is a bad word
+        alert('Message got censored', message)
+        badMessages.push(message)
+      } else {
+        messages.push(message)
+      }
     }
 
-  //censoring messages before sending
-  module.sendMessage = function (message) {
-    //check if bad words are in the messages
-    let badWord = "poop" //it is case sensitive
-
-    if (message.message.indexOf(badWord) != -1) {
-      // There is a bad word
-      alert('Message got censored', message)
-      badMessages.push(message)
-    } else {
-      messages.push(message)
-    }
-  }
-
-  module.searchMessage = function (keyword) {
     //search for words in messages
+    module.searchMessage = function (keyword) {
 
-    let results = messages.filter(m => {
-      //does this current message match what I'm looking for
-      return m.message.indexOf(keyword) != -1
-    })
+      let results = messages.filter(m => {
+        //does this current message match what I'm looking for
+        return m.message.indexOf(keyword) != -1
+      })
 
-    return results
-  }
+      return results
+    }
 
-  module.leaveChat = function (user) {
-    alert('User is trying to leave', user)
-  }
+    module.leaveChat = function (user) {
+      alert('User is trying to leave', user)
+    }
 
-  return module
-})() //End of module
-
+    return module
+})//End of module
 
 //messages
 function ChatMessage(message, user){
@@ -90,7 +89,8 @@ function ChatMessage(message, user){
 
 //display messages
 let message = new ChatMessage("besked", "bruger")
+
 //messages.push(message)
 Chat.sendMessage(message)
 
-console.log("Search results:", Chat.searchMessage("ord"));
+alert("Search results:", Chat.searchMessage("ord"));
