@@ -7,58 +7,61 @@
   <title>Document</title>
 </head>
 <body>
-  <script type="text/javascript" src="app.js" charset="utf-8"></script>
-
   <h1>Chat</h1>
-  <div class="container">
-    <!-- Chat Window -->
-    <ul id = "chatWindow">
-      <li>test message</li>
-    </ul>
 
-    <!-- Message Form -->
-    <form id="chatForm" action="index.html" method="post">
-      <input id="newMessage" type="text" value="Write your message here">
-      </br>
-      <input id="submitButton" type="submit" value="Submit">
-    </form>
-  </div>
+  <p>This is a chat</p>
 
-  <script type="text/javascript">
+  <!-- Message Form -->
+  <form id="chatForm">
+    <input id="newMessage" type="text" placeholder="Write your message here">
+    <input type="submit" value="Submit message">
+  </form>
+
+  <!-- Chat Window -->
+  <ul id= "chatWindow">
+    <li>test message</li>
+    <li>test message</li>
+    <li>test message</li>
+  </ul>
+
+  <script>
+    //For some reason, select title
+    let pageHeader = document.querySelector('h1')
+    console.log('h1 element', pageHeader)
+
     //Select all chat messages
-    let chat = document.querySelectorAll('#chatWindow li');
+    let messages = document.querySelectorAll('#chatWindow li')
     console.log('All chat messages', messages);
 
     //Add event to Form
     //Select form
-    let form = document.querySelector('#chatForm');
+    let form = document.querySelector('#chatForm')
 
     //Override default behavior of submit button
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
 
-      //Prevent form from reloading
+      //Prevent form from reloading page
       event.preventDefault()
 
       //Select input field
-      let inputField = document.querySelector('#newMessage');
+      let inputField = document.querySelector('#newMessage')
 
       //Create new li element
-      let newListElement = document.createElement('li');
+      let newListElement = document.createElement('li')
 
       //Set the text of the li newElement
       newListElement.innerHTML = inputField.value
 
       //Select which list to add new element to
-      let messageList = document.querySelector('#chatWindow');
+      let chatWindow = document.querySelector('#chatWindow')
 
       //Add message to chat
-      chatWindow.appendChild(newListElement);
+      chatWindow.appendChild(newListElement)
 
       //Delete content of input field
       inputField.value = ''
     })
 
   </script>
-
 </body>
 </html>
