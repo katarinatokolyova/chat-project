@@ -3,15 +3,15 @@
 }
 
 body {
-    background-color: lightblue;
+    background-color: lightGray;
 }
 
 body {
-    color: blue;
+    color: black;
 }
 
 h1 {
-    color: yellow;
+    color: DarkRed;
 }
 
 @keyframes fadeIn {
@@ -19,11 +19,12 @@ h1 {
   to { opacity: 1; margin-left: 0; }
 }
 
+
 .chat-message {
   animation: fadeIn .3s;
 }
 
-#chat-window, #search-window {
+#chat-window, #search-window, #chatForm, #chatWindow {
   overflow: auto;
 }
 
